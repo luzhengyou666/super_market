@@ -16,9 +16,9 @@ use yii\widgets\ActiveForm;
         ],['value'=>'1']) ?>
         <?= $form->field($model, 'sort')->textInput(['value'=>100]) ?>
         <?= $form->field($model, 'intro')->textarea() ?>
-        <?= $form->field($model, 'logoFile')->label("商标")->fileInput() ?>
-        <?=\yii\bootstrap\Html::img("/".$model->logo,['height'=>50])?>
-        <div class="form-group">
+        <?=$form->field($model, 'logo')->label("商标")->widget('manks\FileInput', [
+          ]);?>
+    <div class="form-group">
             <?= Html::submitButton('提交', ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
