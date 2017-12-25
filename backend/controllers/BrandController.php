@@ -4,6 +4,7 @@ namespace backend\controllers;
 
 use backend\models\Brand;
 use yii\web\UploadedFile;
+use flyok666\qiniu\Qiniu;
 
 class BrandController extends \yii\web\Controller
 {
@@ -175,23 +176,62 @@ class BrandController extends \yii\web\Controller
 //删除结束
     public function actionUpload()
     {
-//        得到上传文件的实例对象
-        $file=UploadedFile::getInstanceByName("file");
-        if($file){
+//        $uploadType=\Yii::$app->params['uploadType'];
+//        switch ($uploadType){
+//            case 'local':
+//                //本地上传
+//            case 'qiniu':
+//                //七牛云
+//                break;
+//
+//
+//        }
+        //        得到上传文件的实例对象
+        $file = UploadedFile::getInstanceByName("file");
+        if ($file) {
             //                    路径
             $path = "images/brand/" . time() . "." . $file->extension;
 
 //            移动图片
-            if($file->saveAs($path,false)){
-                $result=[
-                  'code'=>0,
-                  'url'=>"/".$path,
-                    'attachment'=>$path
+            if ($file->saveAs($path, false)) {
+                $result = [
+                    'code' => 0,
+                    'url' => "/" . $path,
+                    'attachment' => $path
 
                 ];
                 return json_encode($result);
             }
         }
+//       //上传七牛云
+//        $config = [
+//            //AK
+//            'accessKey' => 'EAd29Qrh05q78_cZhajAWcbB1wYCBLyHLqkanjOG',
+//            //SK
+//            'secretKey' => '_R5o3ZZpPJvz8bNGBWO9YWSaNbxIhpsedbiUtHjW',
+//            'domain' => 'http://p1ht4b07w.bkt.clouddn.com',//临时域名
+//            //空间名称
+//            'bucket' => 'php0830',
+//            //区域
+//            'area' => Qiniu::AREA_HUADONG
+//        ];
+//        //实例化对象
+//        $qiniu = new Qiniu($config);
+////        var_dump($qiniu);exit;
+//        //上传后的文件名
+//        $key = time();
+//        $qiniu->uploadFile($_FILES['file']["tmp_name"], $key);//调用上传方法上传文件
+//        //得到上传后的地址
+//        $url = $qiniu->getLink($key);
+////        var_dump($url);exit();
+//        //返回的结果
+//        $result = [
+//            'code' => 0,
+//            'url' => $url,
+//            'attachment' => $url
+//
+//        ];
+//        return json_encode($result);
 
     }
 
