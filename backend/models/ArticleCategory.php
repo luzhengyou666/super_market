@@ -47,7 +47,7 @@ class ArticleCategory extends \yii\db\ActiveRecord
             'name' => '名称',
             'status' => '状态:0 隐藏 1 显示',
             'sort' => '排序',
-            'intro' => '简介',
+            'intro' => '简介简介',
             'is_help' => '是否帮助类别',
         ];
     }

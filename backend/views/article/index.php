@@ -1,7 +1,7 @@
 <?php
 /* @var $this yii\web\View */
 ?>
-<h1>品牌列表</h1>
+<h1>文章列表</h1>
 <a href="<?=\yii\helpers\Url::to(['add'])?> " class="btn btn-info glyphicon glyphicon-plus"></a>
 <table class="table">
     <tr>
@@ -22,7 +22,7 @@
             <td><?=$article->status?></td>
             <td><?=$article->sort?></td>
             <td><?=$article->cate_id?></td>
-            <td><?=$article->create_time?></td>
+            <td><?=date('Y-m-d H:i:s',$article->create_time)?></td>
             <td>
                 <a href="<?=\yii\helpers\Url::to(['edit','id'=>$article->id])?>" class="btn btn-info glyphicon glyphicon-edit"></a>
                 <a href="<?=\yii\helpers\Url::to(['del','id'=>$article->id])?>" class="btn btn-danger glyphicon glyphicon-trash"></a>
