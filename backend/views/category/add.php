@@ -12,7 +12,7 @@ use yii\widgets\ActiveForm;
     <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'name') ?>
-        <?= $form->field($model, 'parent_id')->hiddenInput() ?>
+        <?= $form->field($model, 'parent_id')->hiddenInput()?>
     <?= \liyuze\ztree\ZTree::widget([
         'setting' => '{
 			data: {
@@ -33,7 +33,7 @@ use yii\widgets\ActiveForm;
     ]);
     ?>
         <?= $form->field($model, 'intro') ?>
-    
+
         <div class="form-group">
             <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>
         </div>
@@ -42,10 +42,13 @@ use yii\widgets\ActiveForm;
 </div><!-- category-add -->
 <?php
 //定义Js代码
-$js=<<<EOF
+$js=<<<JS
        var treeObj = $.fn.zTree.getZTreeObj("w1");
        treeObj.expandAll(true);
-EOF;
+       var node = treeObj.getNodeByParam("id","$model->parent_id",null);//得到节点
+       treeObj.selectNode(node);//选择节点
+       console.log(node);
+JS;
 
 $this->registerJs($js);
 
