@@ -35,33 +35,33 @@ class BrandController extends \yii\web\Controller
                 return $this->redirect(["index"]);
             }
 
-/*//            得到图片对象
-            $model->logoFile = UploadedFile::getInstance($model, 'logoFile');
-//            后端验证
-            if ($model->validate()) {
-//                定义上传路径
-                $path = "";
-//判断是否上传图片
-                if ($model->logoFile) {
-//                    路径
-                    $path = "images/brand/" . uniqid() . "." . $model->logoFile->extension;
-//                移动图片
-                    $model->logoFile->saveAs($path, false);
-                }
-                //给logo赋值
-                $model->logo = $path;
-//                保存数据
-                if ($model->save()) {
-//                    提示
-                    \Yii::$app->session->setFlash("success", "添加成功");
-//                    跳转
-                    return $this->redirect(["index"]);
-                }
-            } else {
-//                TODO
-                var_dump($model->errors);
-                exit;
-            }*/
+            /*//            得到图片对象
+                        $model->logoFile = UploadedFile::getInstance($model, 'logoFile');
+            //            后端验证
+                        if ($model->validate()) {
+            //                定义上传路径
+                            $path = "";
+            //判断是否上传图片
+                            if ($model->logoFile) {
+            //                    路径
+                                $path = "images/brand/" . uniqid() . "." . $model->logoFile->extension;
+            //                移动图片
+                                $model->logoFile->saveAs($path, false);
+                            }
+                            //给logo赋值
+                            $model->logo = $path;
+            //                保存数据
+                            if ($model->save()) {
+            //                    提示
+                                \Yii::$app->session->setFlash("success", "添加成功");
+            //                    跳转
+                                return $this->redirect(["index"]);
+                            }
+                        } else {
+            //                TODO
+                            var_dump($model->errors);
+                            exit;
+                        }*/
         }
         //显示视图
         return $this->render('add', ['model' => $model]);
