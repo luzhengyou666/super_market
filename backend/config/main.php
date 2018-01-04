@@ -6,7 +6,12 @@ $params = array_merge(
     require __DIR__ . '/params-local.php'
 );
 
+
 return [
+//    'as rbac' => [
+//        'class' => \backend\filters\CheckFilter::className(),
+//    ],
+    'defaultRoute' => 'admin/login',
     'id' => 'app-backend',
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
@@ -23,8 +28,9 @@ return [
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
+
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => \backend\models\Admin::className(),
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],

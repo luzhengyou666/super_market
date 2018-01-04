@@ -8,7 +8,7 @@
                 <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="img-circle" alt="User Image"/>
             </div>
             <div class="pull-left info">
-                <p>Alexander Pierce</p>
+                <p>欢迎<?=Yii::$app->user->identity->username?></p>
 
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
@@ -52,6 +52,7 @@
                     ['label' => '品牌列表', 'icon' => 'dashboard', 'url' => ['/brand/index']],
                     ['label' => '文章列表', 'icon' => 'dashboard', 'url' => ['/article/index']],
                     ['label' => '文章分类列表', 'icon' => 'dashboard', 'url' => ['/article-category/index']],
+                    ['label' => '管理员', 'icon' => 'dashboard', 'url' => ['/admin/index']],
                     ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
                     ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
