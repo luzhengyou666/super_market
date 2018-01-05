@@ -29,60 +29,62 @@
         <?= dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
-                'items' => [
-                    ['label' => '列表管理', 'options' => ['class' => 'header']],
-                    [
-                        'label' => '商品列表',
-                        'icon' => 'circle-o',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => '商品列表', 'icon' => 'circle-o', 'url' => '/goods/index',],
-                            /*[
-                                'label' => 'Level Two',
-                                'icon' => 'circle-o',
-                                'url' => '#',
-                                'items' => [
-                                    ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '/goods/index',],
-                                    ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                ],
-                            ],*/
-                        ],
-                    ],
-                    ['label' => '商品分类列表', 'icon' => 'dashboard', 'url' => ['/category/index']],
-                    ['label' => '品牌列表', 'icon' => 'dashboard', 'url' => ['/brand/index']],
-                    ['label' => '文章列表', 'icon' => 'dashboard', 'url' => ['/article/index']],
-                    ['label' => '文章分类列表', 'icon' => 'dashboard', 'url' => ['/article-category/index']],
-                    ['label' => '管理员', 'icon' => 'dashboard', 'url' => ['/admin/index']],
-                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
-                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
-                    [
-                        'label' => 'Some tools',
-                        'icon' => 'share',
-                        'url' => '#',
-                        'items' => [
-                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
-                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
-                            [
-                                'label' => 'Level One',
-                                'icon' => 'circle-o',
-                                'url' => '#',
-                                'items' => [
-                                    ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
-                                    [
-                                        'label' => 'Level Two',
-                                        'icon' => 'circle-o',
-                                        'url' => '#',
-                                        'items' => [
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
-                                        ],
-                                    ],
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
+//                'items' => [ ['label' => '权限', 'icon' => 'dashboard', 'url' => ['/rbac']]],
+                'items' =>mdm\admin\components\MenuHelper::getAssignedMenu(Yii::$app->user->id)
+//                'items' => [
+//                    ['label' => '列表管理', 'options' => ['class' => 'header']],
+//                    [
+//                        'label' => '商品列表',
+//                        'icon' => 'circle-o',
+//                        'url' => '#',
+//                        'items' => [
+//                            ['label' => '商品列表', 'icon' => 'circle-o', 'url' => '/goods/index',],
+//                            /*[
+//                                'label' => 'Level Two',
+//                                'icon' => 'circle-o',
+//                                'url' => '#',
+//                                'items' => [
+//                                    ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '/goods/index',],
+//                                    ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+//                                ],
+//                            ],*/
+//                        ],
+//                    ],
+//                    ['label' => '商品分类列表', 'icon' => 'dashboard', 'url' => ['/category/index']],
+//                    ['label' => '品牌列表', 'icon' => 'dashboard', 'url' => ['/brand/index']],
+//                    ['label' => '文章列表', 'icon' => 'dashboard', 'url' => ['/article/index']],
+//                    ['label' => '文章分类列表', 'icon' => 'dashboard', 'url' => ['/article-category/index']],
+//                    ['label' => '管理员', 'icon' => 'dashboard', 'url' => ['/admin/index']],
+//                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
+//                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
+//                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+//                    [
+//                        'label' => 'Some tools',
+//                        'icon' => 'share',
+//                        'url' => '#',
+//                        'items' => [
+//                            ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii'],],
+//                            ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug'],],
+//                            [
+//                                'label' => 'Level One',
+//                                'icon' => 'circle-o',
+//                                'url' => '#',
+//                                'items' => [
+//                                    ['label' => 'Level Two', 'icon' => 'circle-o', 'url' => '#',],
+//                                    [
+//                                        'label' => 'Level Two',
+//                                        'icon' => 'circle-o',
+//                                        'url' => '#',
+//                                        'items' => [
+//                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+//                                            ['label' => 'Level Three', 'icon' => 'circle-o', 'url' => '#',],
+//                                        ],
+//                                    ],
+//                                ],
+//                            ],
+//                        ],
+//                    ],
+//                ],
             ]
         ) ?>
 
