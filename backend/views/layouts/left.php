@@ -1,7 +1,6 @@
 <aside class="main-sidebar">
 
     <section class="sidebar">
-
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
@@ -9,7 +8,6 @@
             </div>
             <div class="pull-left info">
                 <p>欢迎<?=Yii::$app->user->identity->username?></p>
-
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
@@ -26,11 +24,35 @@
         </form>-->
         <!-- /.search form -->
 
-        <?= dmstr\widgets\Menu::widget(
+        <?php
+
+        $callback = function($menu){
+            $data = json_decode($menu['data'], true);
+            $items = $menu['children'];
+            $return = [
+                'label' => $menu['name'],
+                'url' => [$menu['route']],
+            ];
+            //处理我们的配置
+            if ($data) {
+                //visible
+                isset($data['visible']) && $return['visible'] = $data['visible'];
+                //icon
+                isset($data['icon']) && $data['icon'] && $return['icon'] = $data['icon'];
+                //other attribute e.g. class...
+                $return['options'] = $data;
+            }
+            //没配置图标的显示默认图标，默认图标大家可以自己随便修改
+            (!isset($return['icon']) || !$return['icon']) && $return['icon'] = 'circle-o';
+            $items && $return['items'] = $items;
+
+            return $return;
+        };
+        echo dmstr\widgets\Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu tree', 'data-widget'=> 'tree'],
 //                'items' => [ ['label' => '权限', 'icon' => 'dashboard', 'url' => ['/rbac']]],
-                'items' =>mdm\admin\components\MenuHelper::getAssignedMenu(Yii::$app->user->id)
+                'items' =>mdm\admin\components\MenuHelper::getAssignedMenu(Yii::$app->user->id, null, $callback)
 //                'items' => [
 //                    ['label' => '列表管理', 'options' => ['class' => 'header']],
 //                    [
@@ -51,10 +73,6 @@
 //                        ],
 //                    ],
 //                    ['label' => '商品分类列表', 'icon' => 'dashboard', 'url' => ['/category/index']],
-//                    ['label' => '品牌列表', 'icon' => 'dashboard', 'url' => ['/brand/index']],
-//                    ['label' => '文章列表', 'icon' => 'dashboard', 'url' => ['/article/index']],
-//                    ['label' => '文章分类列表', 'icon' => 'dashboard', 'url' => ['/article-category/index']],
-//                    ['label' => '管理员', 'icon' => 'dashboard', 'url' => ['/admin/index']],
 //                    ['label' => 'Gii', 'icon' => 'file-code-o', 'url' => ['/gii']],
 //                    ['label' => 'Debug', 'icon' => 'dashboard', 'url' => ['/debug']],
 //                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],

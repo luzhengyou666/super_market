@@ -19,7 +19,7 @@ return [
     'modules' => [
         'rbac' => [
             'class' => 'mdm\admin\Module',
-            'layout' => 'top-menu',
+//            'layout' => 'left-menu',
 
         ]
 
@@ -27,7 +27,8 @@ return [
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-                '*'
+            'admin/login',
+//                '*'
 //            'site/*',
 //            'admin/*',
 //            'some-controller/some-action',
