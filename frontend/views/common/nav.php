@@ -6,7 +6,7 @@
         <div class="topnav_right fr">
             <ul>
                 <li>您好，欢迎来到京西！
-                    <?=Yii::$app->user->isGuest?'[<a href="/user/login">登录</a>] [<a href="register.html">免费注册</a>]':Yii::$app->user->identity->username."<a href='/user/logout'>退出登录</a>";
+                    <?=Yii::$app->user->isGuest?'[<a href="/user/login">登录</a>] [<a href="/user/regist">免费注册</a>]':Yii::$app->user->identity->username."<a href='/user/logout'>退出登录</a>";
                     ?>
 
                 </li>

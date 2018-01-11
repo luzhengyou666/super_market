@@ -30,9 +30,6 @@ include_once Yii::getAlias("@app/views/common/nav.php");
 <!-- 头部 start -->
 <?php
 include_once Yii::getAlias("@app/views/common/header.php");
-//include_once "../../common/nav.php";
-//echo Yii::getAlias("@app/views/common/nav.php")
-
 ?>
 
 	<div style="clear:both;"></div>
@@ -306,9 +303,13 @@ include_once Yii::getAlias("@app/views/common/header.php");
                     <?php foreach ($goods as $good):?>
 					<li>
 						<dl>
-							<dt><a href=""><img src="/static/images/goods6.jpg" alt="" /></a></dt>
-							<dd><a href="">惠普G4-1332TX 14英寸笔记本电脑 （i5-2450M 2G 500G 7450M 1G独显 D刻</a></dd>
-							<dd><strong>￥2999.00</strong></dd>
+							<dt>
+                                <a href="<?=\yii\helpers\Url::to(['detail','id'=>$good->id])?>">
+                                    <img src="<?=$good->logo?>" alt="" />
+                                </a>
+                            </dt>
+							<dd><a href=""><?=$good->name?></a></dd>
+							<dd><strong>￥<?=$good->shop_price?></strong></dd>
 							<dd><a href=""><em>已有22人评价</em></a></dd>
 						</dl>
 					</li>

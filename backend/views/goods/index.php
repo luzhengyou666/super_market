@@ -48,7 +48,7 @@
                 <td><?=$model->id?></td>
                 <td><?=$model->name?></td>
                 <td><?=$model->sn?></td>
-                <td><?=\yii\bootstrap\Html::img("/".$model->logo,['height'=>50])?></td>
+                <td><?=\yii\bootstrap\Html::img($model->logo,['height'=>50])?></td>
                 <td><?=$model->category_id?></td>
                 <td><?=$model->brand_id?></td>
                 <td><?=$model->shop_price?></td>

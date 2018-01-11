@@ -2,7 +2,7 @@
 return [
 //    'adminEmail' => 'admin@example.com',
     // 图片服务器的域名设置，拼接保存在数据库中的相对地址，可通过web进行展示
-    'domain' => 'http://www.99kuye.com/',
+    'domain' => 'http://admin.99kuye.com',
     'webuploader' => [
         // 后端处理图片的地址，value 是相对的地址
         'uploadUrl' => 'upload',

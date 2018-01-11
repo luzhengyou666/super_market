@@ -166,7 +166,6 @@ class BrandController extends \yii\web\Controller
     public function actionDel($id)
     {
         $model=Brand::findOne($id);
-        unlink($model->logo);
         if($model->delete()){
             \Yii::$app->session->setFlash("success", "删除成功");
             return $this->redirect(['index']);
@@ -187,51 +186,52 @@ class BrandController extends \yii\web\Controller
 //
 //        }
         //        得到上传文件的实例对象
-        $file = UploadedFile::getInstanceByName("file");
-        if ($file) {
-            //                    路径
-            $path = "images/brand/" . time() . "." . $file->extension;
-
-//            移动图片
-            if ($file->saveAs($path, false)) {
-                $result = [
-                    'code' => 0,
-                    'url' => "/" . $path,
-                    'attachment' => $path
-
-                ];
-                return json_encode($result);
-            }
-        }
-//       //上传七牛云
-//        $config = [
-//            //AK
-//            'accessKey' => 'EAd29Qrh05q78_cZhajAWcbB1wYCBLyHLqkanjOG',
-//            //SK
-//            'secretKey' => '_R5o3ZZpPJvz8bNGBWO9YWSaNbxIhpsedbiUtHjW',
-//            'domain' => 'http://p1ht4b07w.bkt.clouddn.com',//临时域名
-//            //空间名称
-//            'bucket' => 'php0830',
-//            //区域
-//            'area' => Qiniu::AREA_HUADONG
-//        ];
-//        //实例化对象
-//        $qiniu = new Qiniu($config);
-////        var_dump($qiniu);exit;
-//        //上传后的文件名
-//        $key = time();
-//        $qiniu->uploadFile($_FILES['file']["tmp_name"], $key);//调用上传方法上传文件
-//        //得到上传后的地址
-//        $url = $qiniu->getLink($key);
-////        var_dump($url);exit();
-//        //返回的结果
-//        $result = [
-//            'code' => 0,
-//            'url' => $url,
-//            'attachment' => $url
+//        $file = UploadedFile::getInstanceByName("file");
+//        if ($file) {
+//            //                    路径
+//            $path = "images/brand/" . time() . "." . $file->extension;
 //
-//        ];
-//        return json_encode($result);
+////            移动图片
+//            if ($file->saveAs($path, false)) {
+//                $result = [
+//                    'code' => 0,
+//                    'url' => "/" . $path,
+//                    'attachment' => $path
+//
+//                ];
+//                return json_encode($result);
+//            }
+//        }
+       //上传七牛云
+        $config = [
+            //AK
+            'accessKey' => 'RnNKB4iUqfNN78HTwXrwADWNk-NdGNYfv8fxPAsN',
+            //SK
+            'secretKey' => 'fMRra7w03xAeBprr8J68MGDpasf28FZMUEZCrWOy',
+            'domain' => 'http://p2dzax0ma.bkt.clouddn.com',//临时域名
+            //空间名称
+            'bucket' => '99kuye',
+            //区域
+            'area' => Qiniu::AREA_HUANAN
+        ];
+        //实例化对象
+            $qiniu = new Qiniu($config);
+//        var_dump($qiniu);exit;
+        //上传后的文件名
+        $key = time();
+        $qiniu->uploadFile($_FILES['file']["tmp_name"], $key);//调用上传方法上传文件
+        //得到上传后的地址
+        //var_dump($_FILES);exit;
+        $url = $qiniu->getLink($key);
+        //var_dump($url);exit();
+        //返回的结果
+        $result = [
+            'code' => 0,
+            'url' => $url,
+            'attachment' => $url
+
+        ];
+        return json_encode($result);
 
     }
 

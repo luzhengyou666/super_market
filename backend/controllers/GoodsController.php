@@ -19,6 +19,10 @@ class GoodsController extends \yii\web\Controller
         return [
             'upload' => [
                 'class' => 'kucha\ueditor\UEditorAction',
+                'config' => [
+                    "imageUrlPrefix"=>"http://admin.99kuye.com",
+
+                ],
             ]
         ];
     }
@@ -47,7 +51,7 @@ class GoodsController extends \yii\web\Controller
         $pages = new Pagination(
             [
                 'totalCount' => $query->count(),
-                'pageSize' => 2
+                'pageSize' => 5
             ]
         );
         $models = $query->offset($pages->offset)
@@ -95,6 +99,7 @@ class GoodsController extends \yii\web\Controller
                     //得到最终的货号
                     $model->sn=date("Ymd").$count;
                 }
+                $model->create_at=time();
                 //保存商品数据
                 if ($model->save()) {
                     //保存商品详情
@@ -192,12 +197,6 @@ class GoodsController extends \yii\web\Controller
     public function actionDel($id)
     {
         $model=Goods::findOne($id);
-//        var_dump($model);exit;
-
-        unlink($model->logo);
-        $goos=GoodsGallery::find()->where(['goods_id'=>$id])->one();
-        //var_dump($goos);exit;
-        unlink($goos->path);
         //删除所有图片
         GoodsGallery::deleteAll(['goods_id'=>$id]);
         if($model->delete()){
