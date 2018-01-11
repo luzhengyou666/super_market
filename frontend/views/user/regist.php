@@ -11,25 +11,11 @@
 </head>
 <body>
 	<!-- 顶部导航 start -->
-	<div class="topnav">
-		<div class="topnav_bd w990 bc">
-			<div class="topnav_left">
-				
-			</div>
-			<div class="topnav_right fr">
-				<ul>
-					<li>您好，欢迎来到京西！[<a href="login.html">登录</a>] [<a href="register.html">免费注册</a>] </li>
-					<li class="line">|</li>
-					<li>我的订单</li>
-					<li class="line">|</li>
-					<li>客户服务</li>
-
-				</ul>
-			</div>
-		</div>
-	</div>
+    <?PHP
+    include_once Yii::getAlias("@app/views/common/nav.php");
+    ?>
 	<!-- 顶部导航 end -->
-	
+
 	<div style="clear:both;"></div>
 
 	<!-- 页面头部 start -->
@@ -39,7 +25,7 @@
 		</div>
 	</div>
 	<!-- 页面头部 end -->
-	
+
 	<!-- 登录主体部分start -->
 	<div class="login w990 bc mt10 regist">
 		<div class="login_hd">
@@ -78,7 +64,7 @@
 						<li>
 							<label for="">验证码：</label>
 							<input type="text" class="txt" value="" placeholder="请输入短信验证码" name="User[captcha]" disabled="disabled" id="captcha"/> <input type="button" onclick="bindPhoneNum(this)" id="get_captcha" value="获取验证码" style="height: 25px;padding:3px 8px"/>
-							
+
 						</li>
 						<li class="checkcode">
 							<label for="">验证码：</label>
@@ -86,7 +72,7 @@
 							<img src="/user/captcha" alt="" id="imgCode"/>
 							<span>看不清？<a href="javascript:void(0) " id="changCode">换一张</a></span>
 						</li>
-						
+
 						<li>
 							<label for="">&nbsp;</label>
 							<input type="checkbox" class="chb" checked="checked" /> 我已阅读并同意《用户注册协议》
@@ -97,12 +83,6 @@
 						</li>
 					</ul>
 				</form>
-			</div>
-			
-			<div class="mobile fl">
-				<h3>手机快速注册</h3>			
-				<p>中国大陆手机用户，编辑短信 “<strong>XX</strong>”发送到：</p>
-				<p><strong>1069099988</strong></p>
 			</div>
 
 		</div>
@@ -126,7 +106,7 @@
 			<a href="">京西论坛</a>
 		</p>
 		<p class="copyright">
-			 © 2005-2013 京东网上商城 版权所有，并保留所有权利。  ICP备案证书号:京ICP证070359号 
+			 © 2005-2013 京东网上商城 版权所有，并保留所有权利。  ICP备案证书号:京ICP证070359号
 		</p>
 		<p class="auth">
 			<a href=""><img src="/static/images/xin.png" alt="" /></a>
@@ -144,9 +124,9 @@
                 $.post("/user/regist",$("#reg_form").serialize(),function (data) {
                     console.dir(data);
                     if(data.status){
-                        alert(data.msg);
+                        alert('注册成功');
+                        top.location='http://www.99kuye.com/user/login'
                     }else {
-
                         $.each(data.data,function (k,v) {
                             console.log(v[0]);
 //                            alert(v[0]);
@@ -155,6 +135,7 @@
                                 tipsMore: true
                             });
                             //验证码刷新
+//                            window.location.reload()
                         });
                     }
                 },'json');
@@ -184,10 +165,10 @@ $("#changCode,#imgCode").click(function () {
 					var html = time + ' 秒后再次获取';
 					$('#get_captcha').prop('disabled',true);
 				}
-				
+
 				$('#get_captcha').val(html);
 			},1000);
-		}		
+		}
 	</script>
 </body>
 </html>
