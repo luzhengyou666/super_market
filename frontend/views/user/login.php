@@ -47,9 +47,9 @@
 						</li>
 						<li class="checkcode">
 							<label for="">验证码：</label>
-							<input type="text"  name="checkcode" />
-							<img src="/static/images/checkcode1.jpg" alt="" />
-							<span>看不清？<a href="">换一张</a></span>
+							<input type="text"  name="User[checkCode]" id="checkCode" />
+							<img src="/user/captcha" alt="" id="imgCode"/>
+                            <span>看不清？<a href="javascript:void(0)" id="changCode">换一张</a></span>
 						</li>
 						<li>
 							<label for="">&nbsp;</label>
@@ -114,6 +114,15 @@
 		</p>
 	</div>
 	<!-- 底部版权 end -->
+    <script type="text/javascript" src="/static/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="/layer/layer.js"></script>
+    <script type="text/javascript">
+            $("#changCode,#imgCode").click(function () {
+                $.getJSON("/user/captcha?refresh",function (data) {
+                    $("#imgCode").attr('src',data.url);
+                });
+            });
 
+    </script>
 </body>
 </html>

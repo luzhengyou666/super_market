@@ -6,7 +6,13 @@ class AddressController extends \yii\web\Controller
 {
     public function actionIndex()
     {
-        return $this->render('address');
+        return $this->render('index');
     }
+
+    public function actionAdd()
+    {
+
+    }
+
 
 }

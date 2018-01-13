@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use frontend\components\ShopCart;
 use frontend\models\User;
 use Mrgoon\AliSms\AliSms;
 use yii\helpers\Json;
@@ -86,7 +87,8 @@ public $enableCsrfValidation=false;
 
 
 
- public function actionLogin(){
+ public function actionLogin($back='index/index'){
+
      $request=\Yii::$app->request;
      if ($request->isPost) {
          //创建对象
@@ -96,18 +98,27 @@ public $enableCsrfValidation=false;
          $model->load($request->post());
 
 //         var_dump($model->rememberMe);exit;
+
          //后台验证
+
          if ($model->validate()) {
              //1. 找到用户对象
              $user=User::findOne(['username'=>$model->username]);
+
              //2. 判断用户是否存在  // 3.判断密码是否正确
              if ($user && \Yii::$app->security->validatePassword($model->password,$user->password_hash)) {
                  //用户登录
                  \Yii::$app->user->login($user,$model->rememberMe?3600*24*7:0);
-                 return $this->redirect(['index/index']);
+
+
+                 //登录成功之后 本地购物车数据同步到数据库
+                 $shopCart = new ShopCart();
+                 $shopCart->synDb();//同步到数据库
+                 $shopCart->flush()->save();//清空本地购物车数据
+                 return $this->redirect([$back]);
              }else{
                  //密码错误或者用户名不存在
-                 echo "密码错误";exit;
+                 echo "账号或密码错误";exit;
              }
          }
      }
